@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>RydeWithEli</title></head>
+<body>
+  {% if user %}
+    <h2>Welcome, {{ user.display_name }}</h2>
+    <p><img src="{{ user.avatar_url }}" width="100" /></p>
+    <p><a href="/logout">Logout</a></p>
+  {% else %}
+    <a href="/login">Login with TikTok</a>
+  {% endif %}
+</body>
+</html>
