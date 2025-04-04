@@ -3,11 +3,13 @@ import requests
 from flask import Flask, redirect, request, session, url_for, render_template
 from dotenv import load_dotenv
 
+# Load .env variables
 load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
+# Read from environment
 TIKTOK_CLIENT_KEY = os.getenv("TIKTOK_CLIENT_KEY")
 TIKTOK_CLIENT_SECRET = os.getenv("TIKTOK_CLIENT_SECRET")
 REDIRECT_URI = os.getenv("REDIRECT_URI")
@@ -63,4 +65,5 @@ def logout():
     return redirect(url_for("home"))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))  
+    app.run(debug=True, host="0.0.0.0", port=port)
