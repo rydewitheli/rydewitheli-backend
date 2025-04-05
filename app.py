@@ -1,6 +1,8 @@
 import os
+import requests
 from flask import Flask, redirect, request, session, url_for, render_template
 from dotenv import load_dotenv
+from flask_cors import CORS  # Import flask_cors
 
 # Load environment variables from .env
 load_dotenv()
@@ -8,9 +10,11 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.urandom(24)  # Secret key for Flask sessions
 
-# Hardcoded values for the redirect URI and TikTok API credentials
-REDIRECT_URI = "https://rydewitheli.com/tiktok/callback"  # Adjust as necessary
+# Enable CORS (cross-origin requests from the frontend)
+CORS(app)
 
+# Hardcoded values for the redirect URI and TikTok API credentials
+REDIRECT_URI = "https://rydewitheli.com/tiktok/callback"  # Make sure this matches the live URL
 TIKTOK_CLIENT_KEY = "your_tiktok_client_key_here"  # Replace with your actual TikTok Client Key
 TIKTOK_CLIENT_SECRET = "your_tiktok_client_secret_here"  # Replace with your actual TikTok Client Secret
 
